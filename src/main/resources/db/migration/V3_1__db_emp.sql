@@ -9,7 +9,7 @@ from employees
        left join salaries using (emp_no)
 where salary in (select max(salary)
                  from salaries)
-group by 2;
+group by full_name;
 
 delete employees
 from employees
@@ -20,7 +20,7 @@ where salary in (select max(salary)
 select count(employees.employees.emp_no)
 from employees;
 
-select dept_name, count(dept_emp.emp_no) as count_employees, sum(salary) as money_dept
+select dept_name, count(dept_emp.emp_no) count_employees, sum(salary) money_dept
 from departments
        left join dept_emp using (dept_no)
        left join salaries on dept_emp.emp_no = salaries.emp_no
